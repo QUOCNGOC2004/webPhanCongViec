@@ -11,7 +11,7 @@ type StatCardProps = {
 
 export const StatCard = ({ title, value, note, icon }: StatCardProps) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-between">
+    <div className="bg-green-100 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-between">
       <div className="flex justify-between items-start">
         <span className="text-gray-500">{title}</span>
         <Icon name={icon} className="w-6 h-6 text-gray-400" />

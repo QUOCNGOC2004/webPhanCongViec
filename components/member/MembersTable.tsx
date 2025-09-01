@@ -96,7 +96,7 @@ export const MembersTable = ({ members }: MembersTableProps) => {
                   {member.joinDate}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                  <a href={`/member/${index + 1}`} className="text-indigo-600 hover:text-indigo-900">
                     Xem chi tiết
                   </a>
                 </td>
