@@ -17,20 +17,24 @@ import {
   Search,
   UserPlus,
   LogOut,
+  User, // 👈 icon cho trang Cá nhân
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 
+// Danh sách nút sidebar
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard, current: false },
   { name: "Công việc", href: "/tasks", icon: CheckSquare, current: false },
   { name: "Nhóm", href: "/teams", icon: Users, current: false },
+  { name: "Cá nhân", href: "/member", icon: User, current: false },
   { name: "Phân công", href: "/assignments", icon: UserPlus, current: false },
-  { name: "Báo cáo", href: "/reports", icon: BarChart3, current: true },
+  { name: "Báo cáo", href: "/reports", icon: BarChart3, current: false },
   { name: "Lịch", href: "/calendar", icon: Calendar, current: false },
   { name: "Cài đặt", href: "/settings", icon: Settings, current: false },
+   
 ]
 
 interface DashboardLayoutProps {
@@ -45,6 +49,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const supabase = createClient()
   const pathname = usePathname()
 
+  // Hàm check active cho sidebar
   const isActive = (href: string) => {
     if (!pathname) return false
     if (href === "/") return pathname === "/"
@@ -195,7 +200,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex items-center gap-2">
                 <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
                   <span className="text-sm font-medium text-primary-foreground">
-                    {user?.user_metadata?.display_name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
+                    {user?.user_metadata?.display_name?.[0]?.toUpperCase() ||
+                      user?.email?.[0]?.toUpperCase() ||
+                      "U"}
                   </span>
                 </div>
                 <Button variant="ghost" size="sm" onClick={handleLogout} title="Đăng xuất">

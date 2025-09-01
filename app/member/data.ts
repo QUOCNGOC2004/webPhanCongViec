@@ -1,0 +1,73 @@
+export const statsData = [
+  {
+    title: "Tổng số thành viên",
+    value: "6",
+    note: "+2 thành viên mới tháng này",
+    icon: "users",
+  },
+  {
+    title: "Thành viên hoạt động",
+    value: "5",
+    note: "83% tổng thành viên",
+    icon: "active",
+  },
+  {
+    title: "Công việc đang thực hiện",
+    value: "32",
+    note: "Tất cả các công việc",
+    icon: "tasks",
+  },
+  {
+    title: "Nhóm tham gia",
+    value: "9",
+    note: "100% thành viên có nhóm",
+    icon: "groups",
+  },
+];
+
+export const membersData = [
+  {
+    name: "Nguyễn Văn An",
+    email: "an.nguyen@email.com",
+    avatarInitial: "A",
+    position: "Frontend Developer",
+    status: "Hoạt động",
+    groups: 2,
+    tasks: 5,
+    joinDate: "15/01/2024",
+    avatarColor: "bg-green-500",
+  },
+  {
+    name: "Trần Thị Bình",
+    email: "binh.tran@email.com",
+    avatarInitial: "B",
+    position: "Backend Developer",
+    status: "Hoạt động",
+    groups: 1,
+    tasks: 8,
+    joinDate: "20/01/2024",
+    avatarColor: "bg-green-500",
+  },
+  {
+    name: "Lê Minh Cường",
+    email: "cuong.le@email.com",
+    avatarInitial: "C",
+    position: "UI/UX Designer",
+    status: "Hoạt động",
+    groups: 3,
+    tasks: 4,
+    joinDate: "05/02/2024",
+    avatarColor: "bg-blue-500",
+  },
+  {
+    name: "Phạm Thị Dung",
+    email: "dung.pham@email.com",
+    avatarInitial: "D",
+    position: "Project Manager",
+    status: "Tạm nghỉ",
+    groups: 4,
+    tasks: 10,
+    joinDate: "10/03/2024",
+    avatarColor: "bg-orange-500",
+  },
+];
