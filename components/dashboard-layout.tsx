@@ -20,7 +20,8 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createClient } from "@/lib/supabase/client"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
+import Link from "next/link"
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard, current: false },
@@ -42,6 +43,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   const supabase = createClient()
+  const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (!pathname) return false
+    if (href === "/") return pathname === "/"
+    return pathname === href || pathname.startsWith(href)
+  }
 
   useEffect(() => {
     const getUser = async () => {
@@ -104,22 +112,26 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
           <nav className="mt-8 px-4">
             <ul className="space-y-2">
-              {navigation.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className={cn(
-                      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                      item.current
-                        ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                    )}
-                  >
-                    <item.icon className="h-5 w-5" />
-                    {item.name}
-                  </a>
-                </li>
-              ))}
+              {navigation.map((item) => {
+                const active = isActive(item.href)
+                return (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                        active
+                          ? "bg-green-600 text-white"
+                          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                      )}
+                    >
+                      <item.icon className={cn("h-5 w-5", active ? "text-white" : "")} />
+                      {item.name}
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           </nav>
         </div>
@@ -132,22 +144,26 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
         <nav className="mt-8 px-4">
           <ul className="space-y-2">
-            {navigation.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                    item.current
-                      ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                  )}
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.name}
-                </a>
-              </li>
-            ))}
+            {navigation.map((item) => {
+              const active = isActive(item.href)
+              return (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                      active
+                        ? "bg-green-600 text-white"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                    )}
+                  >
+                    <item.icon className={cn("h-5 w-5", active ? "text-white" : "")} />
+                    {item.name}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </nav>
       </div>
